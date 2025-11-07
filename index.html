@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             line-height: 1.6;
@@ -117,6 +121,91 @@
             color: #8b949e;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+        
+        .nav-menu {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.05) 0%, rgba(137, 87, 229, 0.05) 100%);
+            border: 1px solid rgba(88, 166, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .nav-button {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(137, 87, 229, 0.1) 100%);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            color: #c9d1d9;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(88, 166, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-button:hover::before {
+            left: 100%;
+        }
+        
+        .nav-button:hover {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.2) 0%, rgba(137, 87, 229, 0.2) 100%);
+            border-color: #58a6ff;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.3);
+            transform: translateX(3px);
+        }
+        
+        .nav-button.active {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.25) 0%, rgba(137, 87, 229, 0.25) 100%);
+            border-color: #58a6ff;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.4);
+        }
+        
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        
+        .nav-icon[fill] {
+            fill: #c9d1d9;
+        }
+        
+        .nav-icon[stroke] {
+            stroke: #c9d1d9;
+            fill: none;
+        }
+        
+        .nav-button:hover .nav-icon[fill] {
+            fill: #58a6ff;
+        }
+        
+        .nav-button:hover .nav-icon[stroke] {
+            stroke: #58a6ff;
+        }
+        
+        .nav-button.active .nav-icon[fill] {
+            fill: #58a6ff;
+        }
+        
+        .nav-button.active .nav-icon[stroke] {
+            stroke: #58a6ff;
         }
         
         .main-content {
@@ -303,6 +392,59 @@
                 <div class="title">GitHub Developer</div>
             </div>
             
+            <div class="nav-menu">
+                <a href="#about" class="nav-button">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>About</span>
+                </a>
+                <a href="#experience" class="nav-button">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    <span>Experience</span>
+                </a>
+                <a href="#education" class="nav-button">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                    <span>Education</span>
+                </a>
+                <a href="#skills" class="nav-button">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <span>Skills</span>
+                </a>
+                <a href="#projects" class="nav-button active">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Projects</span>
+                </a>
+                <a href="#publications" class="nav-button">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                    <span>Publications</span>
+                </a>
+                <a href="#interests" class="nav-button">
+                    <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span>Interests</span>
+                </a>
+            </div>
+            
             <div class="stats-card">
                 <h3>📊 Statistics</h3>
                 <div class="stats-grid">
@@ -323,7 +465,7 @@
         </div>
         
         <div class="main-content">
-            <h2>Repositories</h2>
+            <h2 id="projects">Repositories</h2>
             <div class="repos-list">
 
                 <div class="repo-card">
@@ -398,7 +540,7 @@
         </div>
         
         <div class="footer">
-            <p>Last updated: November 07, 2025 at 11:59 PM</p>
+            <p>Last updated: November 08, 2025 at 12:07 AM</p>
             <p>Generated automatically from GitHub API</p>
         </div>
     </div>
