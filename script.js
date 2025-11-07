@@ -58,6 +58,13 @@ function showSection(sectionId) {
   const targetSection = document.getElementById(sectionId);
   if (targetSection) {
     targetSection.style.display = 'block';
+    
+    // If showing projects section, fetch repositories
+    if (sectionId === 'projects') {
+      setTimeout(() => {
+        handleProjectsSection();
+      }, 50);
+    }
   }
   
   // Update active nav item
@@ -85,16 +92,36 @@ window.addEventListener('hashchange', () => {
   showSection(hash);
 });
 
-// Initialize - show about section by default
-const initialHash = window.location.hash.substring(1) || 'about';
-showSection(initialHash);
-
 // Fetch GitHub repositories
 const username = 'Shaghayegh-Abedi';
 
 function getReposContainer() {
   return document.getElementById('repositories-container');
 }
+
+// Track if repositories have been fetched
+let reposFetched = false;
+
+// Fetch repositories when Projects section is shown
+function handleProjectsSection() {
+  const reposContainer = getReposContainer();
+  if (!reposContainer) return;
+  
+  // Only fetch if we haven't fetched yet or container is empty/loading
+  const shouldFetch = !reposFetched || 
+                      reposContainer.innerHTML === '<p>Loading repositories...</p>' || 
+                      reposContainer.innerHTML === '' ||
+                      reposContainer.innerHTML.trim() === '';
+  
+  if (shouldFetch) {
+    reposFetched = true;
+    fetchRepositories();
+  }
+}
+
+// Initialize - show about section by default
+const initialHash = window.location.hash.substring(1) || 'about';
+showSection(initialHash);
 
 const languageColors = {
   'Python': '#3572A5',
@@ -190,14 +217,7 @@ async function fetchRepositories() {
   }
 }
 
-// Fetch repositories when Projects section is shown
-function handleProjectsSection() {
-  const reposContainer = getReposContainer();
-  if (reposContainer && (reposContainer.innerHTML === '<p>Loading repositories...</p>' || reposContainer.innerHTML === '')) {
-    fetchRepositories();
-  }
-}
-
+// Ensure repositories are fetched when Projects link is clicked
 const projectsLink = document.querySelector('a[href="#projects"]');
 if (projectsLink) {
   projectsLink.addEventListener('click', () => {
@@ -207,18 +227,27 @@ if (projectsLink) {
 
 // Also fetch if projects is the initial section
 if (initialHash === 'projects') {
-  setTimeout(handleProjectsSection, 100);
+  setTimeout(handleProjectsSection, 200);
 }
 
-// Watch for section changes
-const observer = new MutationObserver(() => {
-  const projectsSection = document.getElementById('projects');
-  if (projectsSection && projectsSection.style.display !== 'none') {
-    handleProjectsSection();
-  }
+// Watch for section display changes
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection && projectsSection.style.display !== 'none') {
+        handleProjectsSection();
+      }
+    }
+  });
 });
 
 const mainContent = document.querySelector('.content');
 if (mainContent) {
-  observer.observe(mainContent, { attributes: true, attributeFilter: ['style'], subtree: true });
+  observer.observe(mainContent, { 
+    attributes: true, 
+    attributeFilter: ['style'], 
+    subtree: true,
+    childList: true
+  });
 }
