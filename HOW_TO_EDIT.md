@@ -11,7 +11,7 @@ Edit these lines to change your profile picture, name, and title:
 ```html
 <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img" />
 <h2>Your Name</h2>
-<p>Machine Learning Engineer</p>
+<p>AI Engineer</p>
 ```
 
 **To add your profile picture:**
