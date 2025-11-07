@@ -120,6 +120,26 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.post ul,
+.post ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+  color: #c0c0ff;
+}
+
+.post li {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.post ul li {
+  list-style-type: disc;
+}
+
+.post ol li {
+  list-style-type: decimal;
+}
+
 .section {
   display: block;
 }

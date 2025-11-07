@@ -150,18 +150,25 @@ const languageColors = {
 
 async function fetchRepositories() {
   const reposContainer = getReposContainer();
-  if (!reposContainer) return;
+  if (!reposContainer) {
+    console.error('Repositories container not found');
+    return;
+  }
   
   try {
     reposContainer.innerHTML = '<p>Loading repositories...</p>';
+    console.log('Fetching repositories for:', username);
     
     const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     
     if (!response.ok) {
-      throw new Error('Failed to fetch repositories');
+      const errorText = await response.text();
+      console.error('API Error:', response.status, errorText);
+      throw new Error(`Failed to fetch repositories: ${response.status} ${response.statusText}`);
     }
     
     const repos = await response.json();
+    console.log('Fetched repositories:', repos.length);
     
     if (repos.length === 0) {
       reposContainer.innerHTML = '<p>No repositories found.</p>';
@@ -213,7 +220,16 @@ async function fetchRepositories() {
     });
   } catch (error) {
     console.error('Error fetching repositories:', error);
-    reposContainer.innerHTML = '<p>Error loading repositories. Please try again later.</p>';
+    const reposContainer = getReposContainer();
+    if (reposContainer) {
+      reposContainer.innerHTML = `
+        <div class="post" style="background: rgba(255, 0, 0, 0.1); border: 1px solid rgba(255, 0, 0, 0.3);">
+          <p><strong>Error loading repositories:</strong> ${error.message}</p>
+          <p>Please check the browser console (F12) for more details.</p>
+          <p>You can try refreshing the page or check if your GitHub username is correct: <strong>${username}</strong></p>
+        </div>
+      `;
+    }
   }
 }
 
