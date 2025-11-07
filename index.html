@@ -14,44 +14,91 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #24292e;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #c9d1d9;
+            background: #0d1117;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-        
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-        
-        .stats {
             display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sidebar {
+            width: 320px;
+            background: transparent;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        
+        .profile-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .profile-card h1 {
+            font-size: 1.8em;
+            color: #c9d1d9;
+            margin: 15px 0 5px 0;
+            font-weight: 600;
+        }
+        
+        .profile-card .title {
+            color: #8b949e;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(137, 87, 229, 0.1) 100%);
+            border: 1px solid rgba(88, 166, 255, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(88, 166, 255, 0.1);
+        }
+        
+        .stats-card h3 {
+            color: #c9d1d9;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
         
         .stat {
@@ -59,81 +106,144 @@
         }
         
         .stat-number {
-            font-size: 2em;
-            font-weight: bold;
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #58a6ff;
+            margin-bottom: 5px;
         }
         
         .stat-label {
-            font-size: 0.9em;
-            opacity: 0.8;
+            font-size: 0.75em;
+            color: #8b949e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
-        .content {
+        .main-content {
+            flex: 1;
             padding: 40px;
+            background: transparent;
         }
         
-        .repos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        .main-content h2 {
+            font-size: 2.2em;
+            color: #c9d1d9;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .repos-list {
+            display: flex;
+            flex-direction: column;
             gap: 20px;
-            margin-top: 30px;
         }
         
         .repo-card {
-            border: 1px solid #e1e4e8;
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            background: white;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #58a6ff 0%, #8957e5 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .repo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: #58a6ff;
+            box-shadow: 0 8px 24px rgba(88, 166, 255, 0.2);
+            transform: translateX(5px);
+        }
+        
+        .repo-card:hover::before {
+            opacity: 1;
         }
         
         .repo-header {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .repo-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            fill: #586069;
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            fill: #8b949e;
         }
         
         .repo-name {
-            font-size: 1.2em;
+            font-size: 1.4em;
             font-weight: 600;
-            color: #0366d6;
+            color: #58a6ff;
             text-decoration: none;
+            transition: color 0.2s;
         }
         
         .repo-name:hover {
+            color: #79c0ff;
             text-decoration: underline;
         }
         
-        .repo-description {
-            color: #586069;
+        .repo-date {
+            color: #8b949e;
+            font-size: 0.85em;
+            margin-left: 28px;
             margin-bottom: 15px;
-            min-height: 40px;
+        }
+        
+        .repo-description {
+            color: #8b949e;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .repo-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .repo-tag {
+            background: #21262d;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            transition: all 0.2s;
+        }
+        
+        .repo-tag:hover {
+            background: #30363d;
+            border-color: #58a6ff;
         }
         
         .repo-meta {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             font-size: 0.9em;
-            color: #586069;
+            color: #8b949e;
             flex-wrap: wrap;
+            align-items: center;
         }
         
         .repo-meta-item {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
         }
         
         .language {
@@ -146,46 +256,75 @@
         
         .footer {
             text-align: center;
-            padding: 20px;
-            color: #586069;
-            border-top: 1px solid #e1e4e8;
+            padding: 30px 40px;
+            color: #8b949e;
+            border-top: 1px solid #30363d;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
         
         @media (max-width: 768px) {
-            .repos-grid {
-                grid-template-columns: 1fr;
+            .main-content {
+                padding: 20px;
             }
             
-            header h1 {
-                font-size: 2em;
+            .main-content h2 {
+                font-size: 1.8em;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>@Shaghayegh-Abedi</h1>
-            <p>GitHub Repositories</p>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Repositories</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">4</div>
-                    <div class="stat-label">Original</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">0</div>
-                    <div class="stat-label">Forks</div>
+        <div class="sidebar">
+            <div class="profile-card">
+                <h1>@Shaghayegh-Abedi</h1>
+                <div class="title">GitHub Developer</div>
+            </div>
+            
+            <div class="stats-card">
+                <h3>📊 Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Total</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Original</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Forks</div>
+                    </div>
                 </div>
             </div>
-        </header>
+        </div>
         
-        <div class="content">
-            <h2>All Repositories</h2>
-            <div class="repos-grid">
+        <div class="main-content">
+            <h2>Repositories</h2>
+            <div class="repos-list">
 
                 <div class="repo-card">
                     <div class="repo-header">
@@ -193,15 +332,14 @@
                             <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
                         </svg>
                         <a href="https://github.com/Shaghayegh-Abedi/Shaghayegh-Abedi.github.io" class="repo-name" target="_blank">Shaghayegh-Abedi.github.io</a>
-                        
-                        
                     </div>
+                    <div class="repo-date">Nov 07, 2025</div>
                     <div class="repo-description">None</div>
+                    <div class="repo-tags"><span class="repo-tag">HTML</span></div>
                     <div class="repo-meta">
                         <div class="repo-meta-item"><span class="language" style="background-color: #E34C26;"></span>HTML</div>
                         <div class="repo-meta-item">⭐ 0</div>
                         <div class="repo-meta-item">🍴 0</div>
-                        <div class="repo-meta-item">Updated Nov 07, 2025</div>
                     </div>
                 </div>
 
@@ -211,15 +349,14 @@
                             <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
                         </svg>
                         <a href="https://github.com/Shaghayegh-Abedi/AutoMarketing-Agent" class="repo-name" target="_blank">AutoMarketing-Agent</a>
-                        
-                        
                     </div>
+                    <div class="repo-date">Nov 07, 2025</div>
                     <div class="repo-description">A Mini Multi-Agent Marketing Team - Autonomous campaign planning system</div>
+                    <div class="repo-tags"><span class="repo-tag">Python</span></div>
                     <div class="repo-meta">
                         <div class="repo-meta-item"><span class="language" style="background-color: #3572A5;"></span>Python</div>
                         <div class="repo-meta-item">⭐ 0</div>
                         <div class="repo-meta-item">🍴 0</div>
-                        <div class="repo-meta-item">Updated Nov 07, 2025</div>
                     </div>
                 </div>
 
@@ -229,15 +366,14 @@
                             <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
                         </svg>
                         <a href="https://github.com/Shaghayegh-Abedi/DMN-prompting-project" class="repo-name" target="_blank">DMN-prompting-project</a>
-                        
-                        
                     </div>
+                    <div class="repo-date">Oct 07, 2025</div>
                     <div class="repo-description">None</div>
+                    <div class="repo-tags"><span class="repo-tag">Jupyter Notebook</span></div>
                     <div class="repo-meta">
                         <div class="repo-meta-item"><span class="language" style="background-color: #DA5B0B;"></span>Jupyter Notebook</div>
                         <div class="repo-meta-item">⭐ 4</div>
                         <div class="repo-meta-item">🍴 1</div>
-                        <div class="repo-meta-item">Updated Oct 07, 2025</div>
                     </div>
                 </div>
 
@@ -247,15 +383,14 @@
                             <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
                         </svg>
                         <a href="https://github.com/Shaghayegh-Abedi/Intent-Detection-with-Audio-Classification" class="repo-name" target="_blank">Intent-Detection-with-Audio-Classification</a>
-                        
-                        
                     </div>
+                    <div class="repo-date">Oct 29, 2023</div>
                     <div class="repo-description">A labeled dataset of user inputs and intents is used to train classification-based intent detection models. The model aims the ability to recognize patterns and features in the input data that relate to particular intentions during the training process.</div>
+                    <div class="repo-tags"><span class="repo-tag">Jupyter Notebook</span></div>
                     <div class="repo-meta">
                         <div class="repo-meta-item"><span class="language" style="background-color: #DA5B0B;"></span>Jupyter Notebook</div>
                         <div class="repo-meta-item">⭐ 0</div>
                         <div class="repo-meta-item">🍴 0</div>
-                        <div class="repo-meta-item">Updated Oct 29, 2023</div>
                     </div>
                 </div>
 
@@ -263,7 +398,7 @@
         </div>
         
         <div class="footer">
-            <p>Last updated: November 07, 2025 at 11:46 PM</p>
+            <p>Last updated: November 07, 2025 at 11:59 PM</p>
             <p>Generated automatically from GitHub API</p>
         </div>
     </div>
