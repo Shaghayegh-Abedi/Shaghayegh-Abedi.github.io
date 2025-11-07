@@ -15,25 +15,116 @@
       <h2>Your Name</h2>
       <p>Machine Learning Engineer</p>
       <nav>
-        <a href="#">Blog</a>
-        <a href="#">About</a>
-        <a href="#">Projects</a>
-        <a href="#">Contact</a>
+        <a href="#about" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>About</span>
+        </a>
+        <a href="#experience" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span>Experience</span>
+        </a>
+        <a href="#education" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span>Education</span>
+        </a>
+        <a href="#skills" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+          <span>Skills</span>
+        </a>
+        <a href="#projects" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Projects</span>
+        </a>
+        <a href="#publications" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Publications</span>
+        </a>
+        <a href="#interests" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>Interests</span>
+        </a>
       </nav>
     </aside>
 
     <main class="content">
-      <h1>Blog Posts</h1>
-      <div class="post">
-        <h2>Book Review: "Mindset" by Carol Dweck</h2>
-        <p class="date">October 12, 2025</p>
-        <p>The view you adapt for yourself profoundly affects the way you lead your life...</p>
-      </div>
-      <div class="post">
-        <h2>The Future of Machine Learning in Autonomous Systems</h2>
-        <p class="date">January 15, 2025</p>
-        <p>Exploring how advanced ML algorithms are revolutionizing drone systems and real-world applications...</p>
-      </div>
+      <section id="about" class="section">
+        <h1>About</h1>
+        <div class="post">
+          <p>Welcome to my portfolio! I'm a Machine Learning Engineer passionate about building intelligent systems and solving complex problems.</p>
+        </div>
+      </section>
+
+      <section id="experience" class="section" style="display: none;">
+        <h1>Experience</h1>
+        <div class="post">
+          <h2>Your Experience</h2>
+          <p class="date">Add your work experience here</p>
+          <p>Describe your professional background and achievements.</p>
+        </div>
+      </section>
+
+      <section id="education" class="section" style="display: none;">
+        <h1>Education</h1>
+        <div class="post">
+          <h2>Your Education</h2>
+          <p class="date">Add your educational background here</p>
+          <p>List your degrees, certifications, and academic achievements.</p>
+        </div>
+      </section>
+
+      <section id="skills" class="section" style="display: none;">
+        <h1>Skills</h1>
+        <div class="post">
+          <h2>Technical Skills</h2>
+          <p>Add your technical skills and expertise here.</p>
+        </div>
+      </section>
+
+      <section id="projects" class="section" style="display: none;">
+        <h1>Projects</h1>
+        <div id="repositories-container">
+          <p>Loading repositories...</p>
+        </div>
+      </section>
+
+      <section id="publications" class="section" style="display: none;">
+        <h1>Publications</h1>
+        <div class="post">
+          <h2>Your Publications</h2>
+          <p class="date">Add your publications here</p>
+          <p>List your research papers, articles, and publications.</p>
+        </div>
+      </section>
+
+      <section id="interests" class="section" style="display: none;">
+        <h1>Interests</h1>
+        <div class="post">
+          <h2>Personal Interests</h2>
+          <p>Share your hobbies and interests here.</p>
+        </div>
+      </section>
     </main>
   </div>
 
