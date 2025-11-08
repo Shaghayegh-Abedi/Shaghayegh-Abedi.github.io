@@ -349,6 +349,52 @@ body {
   margin: 0;
 }
 
+.skill-separator {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 1rem 0;
+}
+
+.tools-section {
+  text-align: left;
+  margin-top: 1rem;
+}
+
+.tools-label {
+  color: #c0c0ff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tool-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tool-button {
+  background: rgba(120, 0, 255, 0.2);
+  border: 1px solid rgba(120, 0, 255, 0.3);
+  color: #c0c0ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.tool-button:hover {
+  background: rgba(120, 0, 255, 0.3);
+  border-color: rgba(120, 0, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(120, 0, 255, 0.2);
+}
+
 @media (max-width: 1024px) {
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
