@@ -319,9 +319,9 @@ body {
 }
 
 .skill-icon {
-  width: 50px;
-  height: 50px;
-  margin: 0 auto 1.25rem;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
   background: rgba(120, 0, 255, 0.2);
   border-radius: 50%;
   display: flex;
@@ -331,8 +331,8 @@ body {
 }
 
 .skill-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .skill-card h3 {
